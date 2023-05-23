@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="container">
-        <product-index></product-index>
+        {{ $product->description }}
     </div>
 @endsection
