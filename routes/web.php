@@ -1,5 +1,8 @@
 <?php
 
+use App\Constants\Permissions;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +24,38 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware('auth')
+    ->name('admin.')
+    ->prefix('admin')
+    ->group(function () {
+        Route::patch('users/{user}', [UserController::class, 'update'])
+            ->name('users.update');
+
+        Route::get('users/{user}/edit', [UserController::class, 'edit'])
+            ->name('users.edit');
+
+        Route::get('users', [UserController::class, 'index'])
+            ->name('users.index');
+
+        Route::delete('products/{product}', [ProductController::class, 'destroy'])
+            ->name('products.destroy');
+
+        Route::patch('products/{product}', [ProductController::class, 'update'])
+            ->name('products.update');
+
+        Route::get('products/{product}/edit', [ProductController::class, 'edit'])
+            ->name('products.edit');
+
+        Route::post('products', [ProductController::class, 'store'])
+            ->name('products.store');
+
+        Route::get('products/create', [ProductController::class, 'create'])
+            ->name('products.create');
+
+        Route::get('products', [ProductController::class, 'index'])
+            ->name('products.index');
+
+        Route::get('products/{product}', [ProductController::class, 'show'])
+            ->name('products.show');
+    });

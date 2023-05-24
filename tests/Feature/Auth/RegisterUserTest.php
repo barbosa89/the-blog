@@ -22,7 +22,7 @@ class RegisterUserTest extends TestCase
             'name' => $user->name,
             'email' => $user->email,
             'password' => 'password',
-            'password_confirmation' => 'password'
+            'password_confirmation' => 'password',
         ]);
 
         $response->assertSessionDoesntHaveErrors()
@@ -38,8 +38,8 @@ class RegisterUserTest extends TestCase
 
     /**
      * @test
+     *
      * @dataProvider wrongDataProvider
-     * @param array $wrongData
      */
     public function itValidatesWrongDataOnRegister(array $wrongData): void
     {
@@ -49,7 +49,7 @@ class RegisterUserTest extends TestCase
             'name' => $user->name,
             'email' => $user->email,
             'password' => 'password',
-            'password_confirmation' => 'password'
+            'password_confirmation' => 'password',
         ], $wrongData);
 
         $response = $this->post(route('register'), $data);
@@ -75,7 +75,7 @@ class RegisterUserTest extends TestCase
                 ['email' => 'invalid'],
             ],
             'long email' => [
-                ['email' => str_repeat('very_long_name', 20) . '@mail.com'],
+                ['email' => str_repeat('very_long_name', 20).'@mail.com'],
             ],
         ];
     }

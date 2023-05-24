@@ -13,6 +13,7 @@
         "laravel/ui": "^4.2"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.8",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
@@ -49,7 +50,8 @@
             "@php artisan key:generate --ansi"
         ],
         "test": "XDEBUG_MODE=off vendor/bin/phpunit --testdox",
-        "test:coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-html tests/coverage"
+        "test:coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-html tests/coverage",
+        "format": "vendor/bin/pint"
     },
     "extra": {
         "laravel": {
